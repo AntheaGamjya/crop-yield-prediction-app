@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+<!--    <img src="{{ url_for('static', filename='Images/Add a heading copy.png') }}" alt="CropLytics Logo" class="header-img">-->
+    <style>
+        body {
+            font-family: 'Libre Bodoni', serif;
+            background-color: #e8f5e9; /* Softer green background */
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; /* Space between navigation and buttons */
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px; /* Space between links */
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #33691e; /* Green color for navigation links */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #2e7d32; /* Darker green on hover */
+        }
+        .top-right a {
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: bold;
+            background-color: white;
+            padding: 8px 15px;
+            border: 2px solid #2e7d32;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-right a:hover {
+            background-color: #2e7d32;
+            color: white;
+        }
+        .main-container {
+            text-align: center;
+            padding: 120px 20px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #33691e; /* Original green for main heading */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #4a772f; /* Original green for section headings */
+            font-size: 1.8em;
+            margin: 20px 0 40px;
+        }
+        .header-img {
+            width: 30%; /* Adjust the width as needed */
+            height: auto; /* Maintains aspect ratio */
+            max-height: 300px; /* Example height; adjust as needed */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            mix-blend-mode: multiply; /* or 'screen', depending on your desired effect */
+        }
+        p {
+            color: #33691e; /* Original green for paragraph text */
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        /* Features Styling */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Space between features */
+            flex-wrap: wrap; /* Allow wrapping to the next line for smaller screens */
+            margin-bottom: 30px; /* Add space below the features section */
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column; /* Arrange image, title, and content vertically */
+            align-items: center; /* Center align all feature content */
+
+        }
+
+        .feature img {
+            width: 80px; /* Adjusted size for icons */
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px; /* Space between icon and text */
+        }
+
+        .feature-info {
+            font-size: 1em;
+            color: #33691e; /* Original color for feature text */
+            margin: 10px 0; /* Space between info and content */
+        }
+
+        /* Team Members Styling */
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .member {
+            display: flex;
+            flex-direction: column; /* Arrange photo and name vertically */
+            align-items: center;
+        }
+        .member img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .member-info {
+            font-size: 1em;
+            color: #33691e; /* Original color for member text */
+            margin-top: 10px;
+        }
+        /* About Us Styling */
+        .about {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        /* Add space between sections */
+        section {
+            padding: 60px 20px;
+        }
+        .button {
+            background-color: #66bb6a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #81c784;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#team">Team Members</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="top-right">
+            {% if 'user_email' in session %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login using Google</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-container">
+        <h1>Crop Yield Prediction</h1>
+        <img src="{{ url_for('static', filename='Images/LOGO copy.jpg') }}" alt="Agriculture" class="header-img">
+        <p>🌱 “Sow the seeds of success with our Crop Yield Prediction App!"</p>
+        <p>Where data meets nature, your farming dreams take root and grow. With a sprinkle of data magic and a dash of temperature and precipitation insights, we’ll help you harvest more than just hopes and dreams. Let’s dig deep and watch your yields bloom like never before! 🌾
+        </p>
+
+        <!-- Features Section -->
+        <section id="features">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature"><img src="{{ url_for('static', filename='Images/predict.jpeg') }}" alt="Accurate predictions"></div>
+                <div class="feature-info">Accurate Yield Predictions</div>
+
+                <div class="feature"><img src="{{ url_for('static', filename='Images/user.jpeg') }}" alt="User-friendly interface"></div>
+                <div class="feature-info">User-friendly interface</div>
+
+                <div class="feature"><img src="{{ url_for('static', filename='Images/region.jpeg') }}" alt="Region-Specific Forecasts"></div>
+                <div class="feature-info">Region-Specific Forecasts</div>
+            </div>
+        </section>
+
+        <!-- Team Members Section -->
+        <section id="team">
+            <h2>Meet the Team</h2>
+            <div class="team">
+                <div class="member">
+                    <img src="{{ url_for('static', filename='Images/Om_1.jpeg') }}" alt="Om">
+                    <div class="member-info">Om Pawar</div>
+                </div>
+                <div class="member">
+                    <img src="{{ url_for('static', filename='Images/Sania_1.jpg') }}" alt="Sania">
+                    <div class="member-info">Sania Rodrigues</div>
+                </div>
+                <div class="member">
+                    <img src="{{ url_for('static', filename='Images/Anthea photo copy.jpeg') }}" alt="Anthea">
+                    <div class="member-info">Anthea Gamjya</div>
+                </div>
+                <div class="member">
+                    <img src="{{ url_for('static', filename='Images/Untitled design.jpg') }}" alt="Praveena">
+                    <div class="member-info">Praveena Panicker</div>
+                </div>
+                <div class="member">
+                    <img src="{{ url_for('static', filename='Images/Samriddhi_1.JPG') }}" alt="Samriddhi">
+                    <div class="member-info">Samriddhi Sharma</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>We are a passionate team of data science students from NMIMS University, (Mumbai, India) dedicated to harnessing the power of technology for better farming outcomes. As data enthusiasts , our mission is to empower farmers with actionable insights for optimized crop yields and sustainable agriculture.</p>
+    </section>
+        <section id="contact" class="contact">
+            <h2>Contact Us </h2>
+            <p>If you have any questions or feedback, please feel free to reach out to us:</p>
+            <p> ✉️:  croplytics2001@gmail.com </p>
+            <p> 📞: (123) 456-7890</p>
+    </section>
+    </div>
+</body>
+</html>

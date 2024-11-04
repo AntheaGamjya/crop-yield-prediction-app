@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&display=swap" rel="stylesheet">
+    <style>
+        /* Styling for output container */
+        body {
+            background-color: #e8f5e9; /* Soft green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Bodoni Moda', serif; /* Using Bodoni font */
+        }
+        .result-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #2e7d32; /* Dark green */
+            margin-bottom: 20px;
+        }
+        p {
+            color: #333; /* Black text */
+            font-size: 1.2em; /* Increase font size for emphasis */
+            margin-bottom: 30px;
+        }
+        .button {
+            background-color: #66bb6a; /* Button green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #81c784; /* Hover green */
+        }
+        .back-button {
+            background-color: #66bb6a; /* button green */
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #81c784;
+        }
+        /* Icon for login status */
+        .login-icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #2e7d32; /* Dark green icon */
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Yield Prediction Result</h1>
+        <p>Your predicted yield is approximately {{ prediction }}</p>
+        <a href="/predict-page" class="button">Make another prediction</a>
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+
+    <!-- Login/Logout icon in top right corner -->
+    {% if 'user_email' in session %}
+        <a href="/logout" title="Logout" class="login-icon">👤</a> <!-- User icon for logout -->
+    {% else %}
+        <a href="/login" title="Login with Google" class="login-icon">👤</a> <!-- User icon for login -->
+    {% endif %}
+</body>
+</html>

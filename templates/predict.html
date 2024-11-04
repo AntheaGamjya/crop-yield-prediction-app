@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;700&family=Bodoni+Moda&display=swap" rel="stylesheet"> <!-- Import Libre Bodoni and Bodoni Moda -->
+    <style>
+        body {
+            background-color: #e8f5e9; /* Soft green */
+            font-family: 'Libre Bodoni', serif; /* Apply Libre Bodoni font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: black; /* Black text color */
+            font-weight: bold;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            color: #2e7d32; /* Dark green */
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        label {
+            color: #388e3c; /* Medium green */
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"] {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #c8e6c9; /* Light green border */
+            border-radius: 4px;
+            background-color: #f1f8e9; /* Light green background */
+            color: #2e7d32;
+        }
+        .button {
+            font-family: 'Bodoni Moda', serif; /* Apply Bodoni font to button */
+            background-color: #66bb6a; /* Button green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 70%;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #81c784; /* Hover green */
+        }
+        .back-button {
+            background-color: #a5d6a7; /* Lighter green */
+            margin-top: 10px;
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            width: 50%; /* Full width like the Predict button */
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #66bb6a;
+        }
+        /* Icon for login status */
+        .login-icon {
+            font-size: 1.5em; /* Size of the icon */
+            cursor: pointer;
+            color: #2e7d32; /* Dark green icon */
+        }
+    </style>
+</head>
+<body>
+    <div class="top-right">
+        {% if 'user_email' in session %}
+            <a href="/logout" title="Logout" class="login-icon">👤</a> <!-- User icon for logged-in -->
+        {% else %}
+            <a href="/login" title="Login with Google" class="login-icon">👤</a> <!-- Two users icon for logged-out -->
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h1>Enter Prediction Details</h1>
+        <form action="/predict" method="POST">
+            <label for="state">State</label>
+            <select name="state" id="state" required>
+                <option value="North Dakota">North Dakota</option>
+                <option value="South Dakota">South Dakota</option>
+                <option value="Nebraska">Nebraska</option>
+                <option value="Kansas">Kansas</option>
+                <option value="Missouri">Missouri</option>
+                <option value="Arkansas">Arkansas</option>
+                <option value="Mississippi">Mississippi</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Indiana">Indiana</option>
+                <option value="Illinois">Illinois</option>
+                <option value="Iowa">Iowa</option>
+                <option value="Wisconsin">Wisconsin</option>
+                <option value="Minnesota">Minnesota</option>
+            </select>
+
+            <label for="year">Year</label>
+            <select name="year" id="year" required>
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+                <option value="2006">2006</option>
+                <option value="2007">2007</option>
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+            </select>
+
+            <label for="crop">Crop</label>
+            <select name="crop" id="crop" required>
+                <option value="soybeans">soybeans</option>
+                <option value="corn">corn</option>
+            </select>
+
+            <label for="area">Area (in acres)</label>
+            <input type="number" id="area" name="area" required>
+
+            <button type="submit" class="button">Predict</button>
+        </form>
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>

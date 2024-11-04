@@ -1,0 +1,121 @@
+/* General Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9; /* Soft green background */
+    color: #333;
+    position: relative; /* To allow absolute positioning of the sidebar */
+}
+
+.container {
+    text-align: center;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #ffffff; /* White card background */
+    border-radius: 12px; /* Slightly increased rounding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+}
+
+h1 {
+    font-size: 2.2em; /* Slightly larger for emphasis */
+    color: #2e7d32; /* Darker green for better contrast */
+    margin-bottom: 15px;
+}
+
+.header-img {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+/* Button Styling */
+.button {
+    display: inline-block;
+    padding: 12px 24px; /* Larger padding for easier click/tap */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #66bb6a; /* Main button green */
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    transform: scale(1.03); /* Slight zoom effect */
+}
+
+.back-button {
+    margin-top: 15px;
+    background-color: #4caf50; /* Green for back button */
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -270px; /* Hide sidebar off-screen to the right */
+    height: 100%;
+    width: 270px; /* Slightly wider for readability */
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+.sidebar.active {
+    right: 0; /* Show sidebar */
+    visibility: visible;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #2e7d32;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+/* Toggle button for sidebar */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #66bb6a;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    z-index: 1001;
+}
+
+.toggle-btn:hover {
+    background-color: #388e3c;
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .sidebar {
+        width: 80%;
+    }
+}
